@@ -4,7 +4,7 @@ $(function () {
         //$('#wrapper').css({ 'height': ($(document).height()) + 'px' });
     });
 
-    //팝업창 생성
+    //동영상 팝업창 생성
     $("#bot > div").add(
         "<div class='mov-wrapper popupArea'>" +
             "<div class='popHeader'>" +
@@ -14,6 +14,17 @@ $(function () {
             "<div class='popBody'>" +
                 "<iframe id='video' src='' frameborder='0' allowfullscreen='true' style='overflow-x:hidden;overflow:auto;width:100%;height:322px;'></iframe>" +
             "</div>" +
+        "</div>").appendTo("#bot");
+    //이미지 팝업창 생성
+    $("#bot > div").add(
+        "<div class='img-wrapper popupArea'>" +
+            "<div class='popHeader'>" +
+                "<span id='imgTitle' class='popupTitle'></span>" +
+                "<button class='btnTopClose'></button>" +
+            "</div>" +
+            "<div id='imgCarousel' class='popBody' align='center'>" +
+                "<img id='imgTag' src='' width='568' height='318'>"+
+            "</div> " +
         "</div>").appendTo("#bot");
 
     //챗봇창 상단 생성
@@ -82,10 +93,53 @@ $(function () {
         $('#video').attr('src', movPopUrl);
         $('.mov-wrapper').show().animate({ "right": "380px", "opacity": "1", "display": "block" }, "fast").fadeIn("fast");
     });
+    //챗봇 팝업 동작 (이미지)
+    $(document).on('click', '.wc-card-play > .non-adaptive-content', function () {
+        var imgPopTitle = $(this).children().eq(1).attr('alt');
+        $('#imgTitle').text(imgPopTitle);
+        var imgPopUrl = $(this).children().eq(2).attr('alt');
+        $('.img-wrapper').show().animate({ "right": "380px", "opacity": "1", "display": "block" }, "fast").fadeIn("fast");
+    });
+    //팝업 닫기
     $('.btnTopClose').click(function () {
         $("#video").attr('src', '');
         $('.mov-wrapper').hide().animate({ "right": "-380px", "opacity": "0", "display": "none" }, "slow").fadeOut("slow");
+        $('.img-wrapper').hide().animate({ "right": "-380px", "opacity": "0", "display": "none" }, "slow").fadeOut("slow");
     });
+
+    //동영상 영역 호출
+    $(document).on('click', '.wc-card-play', function () {
+        //$('.wc-carousel-360 > div').removeClass('on');
+        //$('.wx-carousel-map > div').removeClass('on');
+        console.log('mov');
+        $('.wc-carousel-play > div').removeClass('on');
+        $('.wc-carousel-image > div').removeClass('on');
+        $('.img-wrapper').fadeOut();
+        var movPopTitle = $(this).children().eq(2).attr('alt');
+        $('#movTitle').text(movPopTitle);
+        var movPopUrl = $(this).children().eq(3).attr('alt');
+        $('#video').attr('src', movPopUrl);
+        $('.mov-wrapper').show().animate({ "left": "-70px", "opacity": "1" }, "fast");
+        $(this).parent().addClass('on');
+    });
+    //이미지 영역 호출
+    $(document).on('click', '.wc-card-img', function () {
+        console.log('img');
+        $('.wc-carousel-play > div').removeClass('on');
+        $('.wc-carousel-image > div').removeClass('on');
+        $("#video").attr('src', '');
+        $('.mov-wrapper').fadeOut();
+        $('#imgDiv > div').remove();
+        var manyImg = false;
+        var imgPopTitle = $(this).children().children().eq(1).attr('alt');
+        var imgUrl = $(this).children().children().eq(2).attr('alt');
+        var imgCnt = $(this).children().children().eq(3).attr('alt');
+        $('#imgTag').attr('src', imgUrl);
+        $('#imgTitle').text(imgPopTitle);
+        $('.img-wrapper').show().animate({ "right": "380px", "opacity": "1" }, "fast");
+        $(this).parent().addClass('on');
+    });
+
 });
 
 //챗봇 메뉴 처음으로 돌아가기

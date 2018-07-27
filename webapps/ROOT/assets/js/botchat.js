@@ -3129,8 +3129,10 @@
                         }
                     };
                 switch (e.contentType) {
+                    //KSO (customizing)
                     case "application/vnd.microsoft.card.hero":
                         if (e.content.card_division == "play") {
+                            console.log("botchat play");
                             if (!e.content) return null;
                             var r = new i.AdaptiveCardBuilder;
                             return e.content.images && e.content.images.forEach(function (t) {
@@ -3144,6 +3146,38 @@
                             }, o.createElement("div", { className: "playImg" })
                              , o.createElement("div", { className: "hidden", alt: e.content.title })
                              , o.createElement("div", { className: "hidden", alt: e.content.card_value }))
+                        } else if (e.content.card_division == "img") {
+                            console.log("botchat img");
+                            if (!e.content) return null;
+                            var r = new i.AdaptiveCardBuilder;
+                            return e.content.images && e.content.images.forEach(function (t) {
+                                return r.addImage(t.url)
+                            }), r.addCommon(e.content), o.createElement(s.AdaptiveCardContainer, {
+                                className: "hero wc-card-img",
+                                card: r.card,
+                                onImageLoad: t.onImageLoad,
+                                onCardAction: t.onCardAction,
+                                onClick: n(e.content.tap)
+                            }, o.createElement("div", { className: "imgImg" })
+                             , o.createElement("div", { className: "hidden", alt: e.content.title })
+                                , o.createElement("div", { className: "hidden", alt: e.content.images[0].url })
+                             , o.createElement("div", { className: "hidden", alt: e.content.card_value }))
+                        } else if (e.content.card_division == "map") {
+                            console.log("botchat map");
+                            //if (!e.content) return null;
+                            //var r = new i.AdaptiveCardBuilder;
+                            //return e.content.images && e.content.images.forEach(function (t) {
+                            //    return r.addImage(t.url)
+                            //}), r.addCommon(e.content), o.createElement(s.AdaptiveCardContainer, {
+                            //    className: "hero wc-card-img",
+                            //    card: r.card,
+                            //    onImageLoad: t.onImageLoad,
+                            //    onCardAction: t.onCardAction,
+                            //    onClick: n(e.content.tap)
+                            //}, o.createElement("div", { className: "imgImg" })
+                            //    , o.createElement("div", { className: "hidden", alt: e.content.title })
+                            //    , o.createElement("div", { className: "hidden", alt: e.content.images[0].url })
+                            //    , o.createElement("div", { className: "hidden", alt: e.content.card_value }))
                         } else {
                             if (!e.content) return null;
                             var r = new i.AdaptiveCardBuilder;
