@@ -34,8 +34,7 @@ $(function () {
                 "<button class='btnTopClose'></button>" +
             "</div>" +
             "<div id='mapArea' class='popBody'>"+
-                "<button class='btnPopRight'></button>"+
-				"<div id='map' style='border:1px solid #000;'></div>"+  //V3
+				//"<div id='map' style='border:1px solid #000;'></div>"+  //V3
             "</div>"+
         "</div>").appendTo("#bot");
 
@@ -160,14 +159,10 @@ $(function () {
         $('#mapTitle').text(mapTitle);
         var coordinate = $(this).parent().children().eq(2).attr('alt');
         var _temp = coordinate.split(',');
-        var latitude = _temp[0];
-        var longitude = _temp[1];
-
-        console.log(latitude);
-        console.log(longitude);
+        var longitude = _temp[0];
+        var latitude = _temp[1];
 
         /* V3로 변경*/
-
         var position = new naver.maps.LatLng(longitude, latitude);
         var map = new naver.maps.Map('map', {
             center: position,
@@ -175,18 +170,10 @@ $(function () {
             size: new naver.maps.Size(568, 318)
         });
 
-        var markerOptions = {
-            position: position.destinationPoint(90, 15),
-            map: map,
-            //icon: {
-            //    url: 'http://www.hyundai.com/kr/images/counsel/map_pin.png',
-            //    size: new naver.maps.Size(31, 45),
-            //    origin: new naver.maps.Point(0, 0),
-            //    anchor: new naver.maps.Point(25, 26)
-            //}
-        };
-
-        var marker = new naver.maps.Marker(markerOptions);
+        var marker = new naver.maps.Marker({
+            position: new naver.maps.LatLng(longitude, latitude),
+            map: map
+        });
         $('.map-wrapper').show().animate({ "right": "380px", "opacity": "1" }, "fast");
         //$(this).parent().addClass('on');
     });
