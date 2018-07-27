@@ -124,9 +124,9 @@ $(function () {
         //$('.wc-card-play, .wc-card-img, .wc-card-map').parent().removeClass('on');
         $('.img-wrapper, .map-wrapper').fadeOut();
         $("#video").attr('src', '');
-        var movPopTitle = $(this).parent().children().eq(2).attr('alt');
+        var movPopTitle = $(this).parent().children().eq(1).attr('alt');
         $('#movTitle').text(movPopTitle);
-        var movPopUrl = $(this).parent().children().eq(3).attr('alt');
+        var movPopUrl = $(this).parent().children().eq(2).attr('alt');
         $('#video').attr('src', movPopUrl);
         $('.mov-wrapper').show().animate({ "right": "380px", "opacity": "1" }, "fast");
         //$(this).parent().addClass('on');
