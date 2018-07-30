@@ -7764,6 +7764,13 @@
                             return t.props.onChangeText(t.textInput.value)
                         },
                         onKeyPress: function (e) {
+                            //KSO (autocomplete)
+                            if (($('.hiddenText').attr('value') != '') && (t.textInput.value !== '')) {
+                                t.props.inputText = t.textInput.value;
+                                t.textInput.value = '';
+                                $('.hiddenText').attr('value', '');
+                            }
+                            //KSO (menu 부분 현재 사용x)
                             if ((t.props.inputText === 'return home') && (t.textInput.value == '')) {
                                 t.props.inputText = '';
                             }
@@ -7773,10 +7780,22 @@
                             return t.onTextInputFocus()
                         },
                         placeholder: this.props.listening ? this.props.strings.listeningIndicator : this.props.strings.consolePlaceholder
-                    })), o.createElement("label", {
+                        })
+                        //KSO (autocomplete hidden 추가)
+                        , o.createElement("div", {
+                            className: "hiddenText"
+                        })
+                        ), o.createElement("label", {
                         className: r,
                         onClick: function () {
-                            if ((t.props.inputText === ''|| t.props.inputText === 'return home') && (t.textInput.value !== '')) {
+                            //KSO (autocomplete)
+                            if (($('.hiddenText').attr('value') != '') && (t.textInput.value !== '')) {
+                                t.props.inputText = t.textInput.value;
+                                t.textInput.value = '';
+                                $('.hiddenText').attr('value', '');
+                            }
+                            //KSO (menu부분 현재 사용x)
+                            if ((t.props.inputText === '' || t.props.inputText === 'return home') && (t.textInput.value !== '')) {
                                 t.props.inputText = t.textInput.value;
                             }
                             return t.onClickSend()
