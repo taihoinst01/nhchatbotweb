@@ -1,8 +1,8 @@
 ﻿/* chatbot BG */
-.mainBG{background:url(../image/cj_folder/bg.jpg) no-repeat center 10%; background-attachment:fixed; width:100%}
+/*.mainBG{background:url(../image/cj_folder/bg.jpg) no-repeat center 10%; background-attachment:fixed; width:100%}*/
 .botBtnPosition{position:absolute;top:360px;left:25%}
-.banner{background:url(../image/cj_folder/btn.png) no-repeat; width:227px;height:58px;position:relative;top:340px;left:23.5%;transform: translateX(-50%) translateY(-10%);cursor:pointer}
-/*.banner:hover{background:url(../image/chatbotStyle/btn_chatlink_hover.png) no-repeat; width:170px;height:47px;position:relative;top:340px;left:23.5%;transform: translateX(-50%) translateY(-10%);cursor:pointer}*/
+.banner{background:url(../image/chatbotStyle/btn_chatlink.png) no-repeat; width:170px;height:47px;position:relative;top:340px;left:23.5%;transform: translateX(-50%) translateY(-10%);cursor:pointer}
+.banner:hover{background:url(../image/chatbotStyle/btn_chatlink_hover.png) no-repeat; width:170px;height:47px;position:relative;top:340px;left:23.5%;transform: translateX(-50%) translateY(-10%);cursor:pointer}
 
 /* chat TOP */
 .chatTitle{background: url("../image/chatbotStyle/ico_top.png") no-repeat; height:16px;width:16px; display: inline-block;top: 12px; position: absolute; }
