@@ -75,7 +75,7 @@ $(function () {
     $(document).on('click', '.wc-header [class*=btnLayer]', function () {
         if ($(this).hasClass('btnLayerMid')) {
             //$('.wc-chatview-panel').css({ "overflow": "visible" });
-            $('.wc-chatview-panel').animate({ "height": "528px" }, "fast");
+            $('.wc-chatview-panel').animate({ "height": "530px" }, "fast");
             $('.popupArea').animate({ 'bottom': '176px' }, "fast");
             $('.wc-console, wc-message-pane').show();
             $('.btnLayer').removeClass('btnLayerMid').addClass('btnLayerFull');
